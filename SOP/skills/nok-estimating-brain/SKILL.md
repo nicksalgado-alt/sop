@@ -164,10 +164,22 @@ After writing files back to the repo:
 3. **Always push to GitHub immediately after committing.** Local-only commits
    are worthless — if the session ends, they vanish. The brain lives on
    GitHub, not in session memory. Every commit must be followed by `git push`.
-4. If git identity is not configured, set it using the user's name and email
-   before committing (check the user context in the conversation).
-5. If push fails (auth, permissions, conflicts), tell the user immediately
+4. If git identity is not configured, set it:
+   - `git config user.email "nick.salgado@nokrecommerce.com"`
+   - `git config user.name "Nick Salgado"`
+5. For push authentication, check for a `.git-credentials` file in the repo
+   root. If it doesn't exist, ask the user for their GitHub PAT once per
+   session and configure it:
+   - `git remote set-url origin https://<username>:<PAT>@github.com/nicksalgado-alt/sop.git`
+   - The PAT is never written to tracked files (GitHub will block it).
+   - Store it only in the git remote URL for the session.
+6. If push fails (auth, permissions, conflicts), tell the user immediately
    and do not silently proceed as if the save worked.
+
+**Do not wait for the user to ask you to save.** After every accepted estimate,
+revision, or meaningful learning — write the files, commit, and push
+automatically. The user should never have to remind you. This is the brain's
+immune system against context loss.
 
 The brain's value compounds only when changes reach the remote repo.
 
