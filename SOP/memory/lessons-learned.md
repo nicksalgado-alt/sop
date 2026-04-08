@@ -21,6 +21,12 @@
 - Smart lock return rate estimated at ~10% (between ecommerce avg ~20% and manufacturer defect rate ~1-2%).
 - Shipping cost per resale unit is higher ($12) due to weight (~2-3 lbs) vs small electronics.
 - The NextSense Rate Card & SOP format works well as a template for all product categories.
+- Lockly Visage repack SOP video shows 2:37 total at training pace; production steady-state ~1:30–1:45 per unit.
+- Repack-only (NTF) path = no functional testing, just accessory verification + physical repack. At $35/hr → ~$1.02 labor per unit.
+- The blue accessory tray with printed component layout diagram is the built-in verification tool — eliminates need for a separate checklist during repack.
+- 12 distinct components per Lockly unit makes accessory completeness the primary pass/fail gate.
+- Activation Card with unique QR code must stay matched to device — commingling units and cards is a critical failure mode.
+- Video-based SOP extraction works well even without audio narration — frame-by-frame analysis captures timing and sequence accurately.
 
 ## General
 
