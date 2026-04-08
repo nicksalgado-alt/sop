@@ -155,15 +155,21 @@ After every accepted estimate or meaningful review cycle, do the following:
 For high-risk changes, describe the change, explain why it helps, and ask
 the user before applying.
 
-### Git Commit Discipline
+### Git Commit & Push Discipline
 
 After writing files back to the repo:
 
 1. Stage only the specific files you changed (never `git add -A`)
 2. Commit with a clear message describing what was saved and why
-3. Do NOT push unless the user explicitly asks
+3. **Always push to GitHub immediately after committing.** Local-only commits
+   are worthless — if the session ends, they vanish. The brain lives on
+   GitHub, not in session memory. Every commit must be followed by `git push`.
+4. If git identity is not configured, set it using the user's name and email
+   before committing (check the user context in the conversation).
+5. If push fails (auth, permissions, conflicts), tell the user immediately
+   and do not silently proceed as if the save worked.
 
-This ensures the brain's history is clean and reviewable.
+The brain's value compounds only when changes reach the remote repo.
 
 ## System Improvement Loop
 
