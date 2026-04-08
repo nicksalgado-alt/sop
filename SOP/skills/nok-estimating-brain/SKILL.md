@@ -30,8 +30,21 @@ from memory — actually read them, because they may have changed since last
 session.
 
 The repo root is wherever `sop/SOP/` lives in the current workspace. Find it
-first. If it hasn't been cloned yet, clone it from:
-`https://github.com/nicksalgado-alt/sop.git`
+first. If it hasn't been cloned yet:
+
+1. Read the `.env` file from the user's Claude folder (look for it at the
+   mounted workspace root, e.g., `mnt/Claude/.env` or similar). It contains:
+   - `GITHUB_PAT` — the personal access token for push auth
+   - `GITHUB_USER` — the GitHub username
+   - `GITHUB_REPO` — the repo name
+2. Clone using the PAT for authenticated access:
+   `git clone https://<GITHUB_USER>:<GITHUB_PAT>@github.com/<GITHUB_USER>/<GITHUB_REPO>.git`
+3. Configure git identity:
+   - `git config user.email "nick.salgado@nokrecommerce.com"`
+   - `git config user.name "Nick Salgado"`
+
+This ensures push works from the moment the repo is cloned. No prompting
+the user for credentials.
 
 ### Required reads (in order):
 
@@ -164,16 +177,14 @@ After writing files back to the repo:
 3. **Always push to GitHub immediately after committing.** Local-only commits
    are worthless — if the session ends, they vanish. The brain lives on
    GitHub, not in session memory. Every commit must be followed by `git push`.
-4. If git identity is not configured, set it:
+4. Git identity and push auth should already be configured from the boot
+   sequence. If for any reason they're not (e.g., repo was cloned manually
+   without the PAT), read the `.env` file from the user's Claude folder and
+   reconfigure:
    - `git config user.email "nick.salgado@nokrecommerce.com"`
    - `git config user.name "Nick Salgado"`
-5. For push authentication, check for a `.git-credentials` file in the repo
-   root. If it doesn't exist, ask the user for their GitHub PAT once per
-   session and configure it:
-   - `git remote set-url origin https://<username>:<PAT>@github.com/nicksalgado-alt/sop.git`
-   - The PAT is never written to tracked files (GitHub will block it).
-   - Store it only in the git remote URL for the session.
-6. If push fails (auth, permissions, conflicts), tell the user immediately
+   - `git remote set-url origin https://<GITHUB_USER>:<GITHUB_PAT>@github.com/<GITHUB_USER>/<GITHUB_REPO>.git`
+5. If push fails (auth, permissions, conflicts), tell the user immediately
    and do not silently proceed as if the save worked.
 
 **Do not wait for the user to ask you to save.** After every accepted estimate,
