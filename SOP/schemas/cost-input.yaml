@@ -1,0 +1,50 @@
+version: 1
+description: >
+  Lightweight input contract for operational cost estimation. The structure is
+  intentionally flexible so Claude can work from rough requests or detailed SOPs.
+
+request:
+  required:
+    - estimateName
+    - category
+    - region
+    - requestedBy
+  optional:
+    - productName
+    - productVariant
+    - engagementType
+    - customerName
+    - forecastedUnits
+    - fulfillmentMode
+    - storageProfile
+    - notes
+
+context:
+  optional:
+    - sopReferences
+    - processNoteReferences
+    - priorEstimateReferences
+    - acceptedBenchmarks
+    - specialConstraints
+
+conditionMix:
+  optionalFields:
+    - asNewPercent
+    - sellableUsedPercent
+    - damagedPercent
+    - defectivePercent
+
+costDrivers:
+  optionalFields:
+    - laborRatePerHour
+    - partsCostRange
+    - packagingCostRange
+    - shippingCostRange
+    - storageDays
+    - toolingCostNotes
+
+interviewBehavior:
+  rules:
+    - Claude may begin with a plain-English request and infer missing fields.
+    - If a required field is missing, Claude should ask a follow-up question or apply a benchmark assumption.
+    - Any inferred field should be labeled in the resulting estimate.

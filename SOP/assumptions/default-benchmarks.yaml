@@ -1,0 +1,122 @@
+version: 1
+description: >
+  Starter benchmark assumptions for Nok operational estimating. These are
+  defaults, not policy. Claude should use them when the user does not know
+  a value, and should label them clearly as benchmark-based assumptions.
+
+globalDefaults:
+  currency: USD
+  laborRatePerHour: 22
+  storageCostPerUnitPerDay: 0.04
+  defaultConfidence: medium
+
+steps:
+  receiveUnit:
+    displayName: Receive a unit
+    laborMinutes: 3.0
+    handlingCostPerUnit: 0.35
+    partsCostPerUnit: 0
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0
+    confidence: medium
+    notes: Standard inbound receiving with barcode check and basic sorting.
+
+  inspectAsNew:
+    displayName: Inspect as new
+    laborMinutes: 4.0
+    handlingCostPerUnit: 0.15
+    partsCostPerUnit: 0
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0.1
+    confidence: medium
+    notes: Visual and functional check with minimal rework expectation.
+
+  refurbishSellableUsed:
+    displayName: Refurbish as sellable used
+    laborMinutes: 12.0
+    handlingCostPerUnit: 0.5
+    partsCostPerUnit: 3.5
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0.75
+    confidence: medium
+    notes: Light cleaning, reset, accessory reconciliation, and minor touch-up.
+
+  inspectDamaged:
+    displayName: Inspect as damaged
+    laborMinutes: 6.0
+    handlingCostPerUnit: 0.25
+    partsCostPerUnit: 0
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0.35
+    confidence: medium
+    notes: More detailed triage to determine salvage versus defective routing.
+
+  refurbishDefective:
+    displayName: Refurbish as defective
+    laborMinutes: 18.0
+    handlingCostPerUnit: 0.75
+    partsCostPerUnit: 7.0
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 2.0
+    confidence: low
+    notes: Assumes deeper rework with higher parts usage and loss risk.
+
+  fulfillment:
+    displayName: Fulfillment
+    laborMinutes: 2.5
+    handlingCostPerUnit: 0.45
+    partsCostPerUnit: 0
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0
+    confidence: medium
+    notes: Order release, label creation, and dispatch handoff.
+
+  pickPackBulk:
+    displayName: Pick and pack bulk
+    laborMinutes: 2.0
+    handlingCostPerUnit: 1.2
+    partsCostPerUnit: 0.8
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0
+    confidence: medium
+    notes: Bulk pallet or carton prep with simpler packaging cost per unit.
+
+  pickPackParcel:
+    displayName: Pick and pack parcel
+    laborMinutes: 4.0
+    handlingCostPerUnit: 1.6
+    partsCostPerUnit: 1.4
+    storageCostPerUnit: 0
+    falloutAdjustmentPerUnit: 0
+    confidence: medium
+    notes: Parcel labeling, dunnage, and more unit-level handling.
+
+  storage:
+    displayName: Storage
+    laborMinutes: 0.5
+    handlingCostPerUnit: 0.1
+    partsCostPerUnit: 0
+    storageCostPerUnit: 0.2
+    falloutAdjustmentPerUnit: 0
+    confidence: medium
+    notes: Base placeholder for short-term storage before outbound movement.
+
+categoryOverrides:
+  smartLocks:
+    notes: Smart locks may require testing, reset steps, battery handling, and accessory checks.
+    overrides:
+      inspectAsNew:
+        laborMinutes: 5.0
+        falloutAdjustmentPerUnit: 0.2
+      refurbishSellableUsed:
+        laborMinutes: 14.0
+        partsCostPerUnit: 4.5
+      refurbishDefective:
+        laborMinutes: 22.0
+        partsCostPerUnit: 9.5
+
+useRules:
+  - Start with the global labor rate only if no category or facility rate is provided.
+  - Prefer category overrides when a matching category note exists.
+  - Label every benchmark used as benchmark_assumption in the structured estimate.
+  - Promote a benchmark only after repeated review confirms it is useful.

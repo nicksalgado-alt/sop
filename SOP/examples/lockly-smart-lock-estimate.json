@@ -1,0 +1,188 @@
+{
+  "estimateName": "lockly-smart-lock-estimate-v1",
+  "category": "smartLocks",
+  "productName": "Lockly Smart Lock",
+  "region": "North America",
+  "generatedAt": "2026-04-08T12:00:00Z",
+  "estimateStatus": "draft_benchmark_backed",
+  "processPathSummary": "Mixed condition path using receiving, condition-specific inspection/refurbishment, parcel pick and pack, fulfillment, and short-term storage.",
+  "topCostDrivers": [
+    "Refurbish as sellable used labor time",
+    "Refurbish as defective parts usage",
+    "Parcel pick and pack handling cost"
+  ],
+  "openQuestions": [
+    "Does Lockly require device-level functional reset beyond the assumed benchmark?",
+    "What is the true defective-unit parts consumption?",
+    "Should storage dwell be modeled above the default short-term assumption?"
+  ],
+  "totalUnitCost": 17.67,
+  "stepEstimates": [
+    {
+      "stepName": "Receive a unit",
+      "conditionPath": "allUnits",
+      "included": true,
+      "laborMinutes": 3,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 1.1,
+      "partsCostPerUnit": 0,
+      "handlingCostPerUnit": 0.35,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0,
+      "totalStepCostPerUnit": 1.45,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Standard inbound receiving benchmark."
+    },
+    {
+      "stepName": "Inspect as new",
+      "conditionPath": "asNew",
+      "included": true,
+      "laborMinutes": 5,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 1.83,
+      "partsCostPerUnit": 0,
+      "handlingCostPerUnit": 0.15,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0.2,
+      "totalStepCostPerUnit": 2.18,
+      "confidence": "medium",
+      "assumptionSource": "category_benchmark_override",
+      "notes": "Smart-lock override used for functional and cosmetic checks."
+    },
+    {
+      "stepName": "Refurbish as sellable used",
+      "conditionPath": "sellableUsed",
+      "included": true,
+      "laborMinutes": 14,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 5.13,
+      "partsCostPerUnit": 4.5,
+      "handlingCostPerUnit": 0.5,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0.75,
+      "totalStepCostPerUnit": 10.88,
+      "confidence": "medium",
+      "assumptionSource": "category_benchmark_override",
+      "notes": "Includes reset, light touch-up, and accessory reconciliation."
+    },
+    {
+      "stepName": "Inspect as damaged",
+      "conditionPath": "damaged",
+      "included": true,
+      "laborMinutes": 6,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 2.2,
+      "partsCostPerUnit": 0,
+      "handlingCostPerUnit": 0.25,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0.35,
+      "totalStepCostPerUnit": 2.8,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Deeper triage for salvage versus defective routing."
+    },
+    {
+      "stepName": "Refurbish as defective",
+      "conditionPath": "defective",
+      "included": true,
+      "laborMinutes": 22,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 8.07,
+      "partsCostPerUnit": 9.5,
+      "handlingCostPerUnit": 0.75,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 2,
+      "totalStepCostPerUnit": 20.32,
+      "confidence": "low",
+      "assumptionSource": "category_benchmark_override",
+      "notes": "Highest uncertainty step because parts usage may vary materially."
+    },
+    {
+      "stepName": "Fulfillment",
+      "conditionPath": "outboundUnits",
+      "included": true,
+      "laborMinutes": 2.5,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 0.92,
+      "partsCostPerUnit": 0,
+      "handlingCostPerUnit": 0.45,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0,
+      "totalStepCostPerUnit": 1.37,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Standard release and dispatch handoff."
+    },
+    {
+      "stepName": "Pick and pack parcel",
+      "conditionPath": "outboundParcel",
+      "included": true,
+      "laborMinutes": 4,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 1.47,
+      "partsCostPerUnit": 1.4,
+      "handlingCostPerUnit": 1.6,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0,
+      "totalStepCostPerUnit": 4.47,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Parcel flow used for this estimate."
+    },
+    {
+      "stepName": "Storage",
+      "conditionPath": "shortTermHold",
+      "included": true,
+      "laborMinutes": 0.5,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 0.18,
+      "partsCostPerUnit": 0,
+      "handlingCostPerUnit": 0.1,
+      "storageCostPerUnit": 0.2,
+      "falloutAdjustmentPerUnit": 0,
+      "totalStepCostPerUnit": 0.48,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Assumes short dwell time before outbound."
+    },
+    {
+      "stepName": "Pick and pack bulk",
+      "conditionPath": "outboundBulk",
+      "included": false,
+      "laborMinutes": 2,
+      "laborRatePerHour": 22,
+      "laborCostPerUnit": 0.73,
+      "partsCostPerUnit": 0.8,
+      "handlingCostPerUnit": 1.2,
+      "storageCostPerUnit": 0,
+      "falloutAdjustmentPerUnit": 0,
+      "totalStepCostPerUnit": 2.73,
+      "confidence": "medium",
+      "assumptionSource": "benchmark_assumption",
+      "notes": "Shown for comparison only because this estimate uses parcel fulfillment."
+    }
+  ],
+  "sensitivityView": {
+    "laborRateSensitivity": "Every $1/hour change in labor rate moves total unit cost by roughly $0.58 for the selected path.",
+    "refurbTimeSensitivity": "A 2-minute increase in sellable-used refurb time adds roughly $0.73 per applicable unit.",
+    "conditionMixSensitivity": "A higher defective mix is the biggest risk because defective refurbishing is the most expensive path.",
+    "storageDaysSensitivity": "If average storage doubles, storage cost remains a smaller driver than refurb time or parcel handling."
+  },
+  "memorySignals": {
+    "lessonsLearned": [
+      "Smart locks likely need category-specific inspection and reset assumptions.",
+      "Defective-unit parts cost should be validated early because it can dominate the tail of the estimate."
+    ],
+    "benchmarksToPromote": [
+      "Smart lock inspect-as-new override",
+      "Smart lock refurbish-as-sellable-used override"
+    ],
+    "notesToAdd": [
+      "Add more smart-lock process notes once real SOP details are available."
+    ],
+    "promptImprovementsToSuggest": [
+      "When category is smart locks, ask about functional reset and accessory completeness."
+    ]
+  }
+}

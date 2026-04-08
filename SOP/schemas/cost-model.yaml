@@ -1,0 +1,57 @@
+version: 1
+description: >
+  Normalized output for a step-level operational estimate. This is structured
+  enough for export and comparison, while staying loose enough for evolving workflows.
+
+estimate:
+  required:
+    - estimateName
+    - category
+    - productName
+    - region
+    - generatedAt
+    - estimateStatus
+    - totalUnitCost
+    - processPathSummary
+    - topCostDrivers
+    - openQuestions
+    - stepEstimates
+
+stepEstimates:
+  itemShape:
+    required:
+      - stepName
+      - conditionPath
+      - included
+      - laborMinutes
+      - laborRatePerHour
+      - laborCostPerUnit
+      - partsCostPerUnit
+      - handlingCostPerUnit
+      - storageCostPerUnit
+      - falloutAdjustmentPerUnit
+      - totalStepCostPerUnit
+      - confidence
+      - assumptionSource
+      - notes
+
+sensitivityView:
+  optional:
+    - laborRateSensitivity
+    - refurbTimeSensitivity
+    - conditionMixSensitivity
+    - storageDaysSensitivity
+
+memorySignals:
+  optional:
+    - lessonsLearned
+    - benchmarksToPromote
+    - notesToAdd
+    - promptImprovementsToSuggest
+
+behaviorRules:
+  rules:
+    - Every assumption must have a source or explanation.
+    - Steps that are not used in the selected path should remain visible with included=false when helpful.
+    - Confidence should be one of high, medium, or low.
+    - The estimate should remain readable in plain English even when exported.
