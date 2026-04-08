@@ -20,6 +20,16 @@ Use this as a working note, not a final SOP.
 - What percentage of units are expected to be damaged versus sellable used?
 - Are there category-specific shipping or storage concerns?
 
+## Lockly-Specific Notes
+
+- Product line: Secure Pro ($310), Vision Elite ($430), Secure Plus ($230), Affirm ($180), Styla ($700)
+- Weighted avg MSRP: ~$289
+- Estimated 180K units/year sold (1.5% of smart lock market)
+- Return rate: ~10%
+- Key refurb steps: battery test/replace, firmware reset (clear owner data), keypad/fingerprint test, motor cycle test, BLE/WiFi connectivity check, cosmetic refurb
+- Hard fail modes: motor failure, board damage, water intrusion, battery leak
+- Parts harvest value: batteries, mounting hardware, keypads, strike plates
+
 ## Update Guidance
 
 When a smart-lock estimate is reviewed, add the useful lesson here if it is broadly reusable.
