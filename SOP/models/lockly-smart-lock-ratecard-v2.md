@@ -1,52 +1,62 @@
-# Lockly Smart Lock Rate Card & SOP v2 (Video-Validated)
+# Lockly Smart Lock Rate Card & SOP v2 (Final)
 
-Updated from v1 with real SOP data extracted from PGK728WRHK Repack Video (Lockly Visage).
+## Pricing Tiers
 
-## Key Numbers
+| Path | Nok Price | Est. Cost | Margin | Margin % |
+|------|-----------|-----------|--------|----------|
+| Receive & Intake (all units) | $3.00 | $2.59 | $0.41 | 14% |
+| NTF / Damaged (repack only) | $2.00 | $1.73 | $0.27 | 14% |
+| Refurbishment (A/B/C) | $10.00 | $14.74 | -$4.74 | -47% |
+| Defective / Hard Fail | $8.00 | $6.33 | $1.67 | 21% |
 
-- **Blended avg cost per unit: $12.92** (was $10.19 in v1)
-- NTF path (25% of returns): $5.11/unit — ★ video-validated repack SOP
-- Grade A/B/C refurb path (53%): $17.93/unit
-- Hard Fail/BER path (22%): $9.72/unit
-- Labor rate: $35/hr (user-provided)
-- Monthly volume: 1,500 units (18,000/year)
+## Blended Unit Economics
 
-## v2 Changes from v1
+- Blended Price: $10.56/unit
+- Blended Cost: $12.23/unit
+- Blended Margin: -$1.67/unit (-15.8%)
+- **Platform fee ($7,500/mo) makes overall P&L positive**
 
-1. **NTF repack SOP is video-validated** — 5 granular steps extracted from training video, all HIGH confidence
-2. **Lockly Visage added** to product table (PGK728WR, ~$350 MSRP, facial recognition)
-3. **12-component checklist** documented from video (new tab in workbook)
-4. **Condition mix adjusted** — Grade A 28% (was 30%), Hard Fail 14% (was 12%) due to Visage complexity
-5. **100% of units now priced** — v1 only accounted for 90% (excluded damaged inspection path); v2 folds all paths into 3 buckets
-6. **Activation Card flagged** as CRITICAL — unique QR per device, cannot commingle
+## Monthly P&L (at 1,500 units/mo)
 
-## NTF Repack SOP (from video)
+- Processing Revenue: $15,840
+- Platform Fee: $7,500
+- Total Revenue: $23,340
+- Total Cost: $18,344
+- Gross Profit: $4,996
+- Gross Margin: 21.4%
 
-| Phase | Time (training) | Time (production) | Cost |
-|-------|----------------|-------------------|------|
-| Accessory Verification | 40 sec | ~26 sec | $0.44 |
-| Accessory Tray Repack | 20 sec | ~13 sec | $0.21 |
-| Retail Box Assembly | 30 sec | ~20 sec | $0.39 |
-| Documentation & Close | 30 sec | ~20 sec | $0.34 |
-| Shipping Prep | 27 sec | ~18 sec | $0.35 |
-| **NTF Subtotal** | **2:27** | **~1:37** | **$1.73** |
+## Key Insight
+
+Refurb path is underwater at $10/unit — estimated cost is $14.74. This means the
+platform fee and receive/defective margins subsidize refurb. This is viable if:
+- Refurb cost estimate is conservatively high (likely — it's MEDIUM confidence benchmarks)
+- Volume grows and fixed costs get amortized
+- Nok also earns revenue share on resale proceeds (20% take rate)
+
+The resale revenue share is not modeled in this rate card but would significantly
+improve the economics — even at conservative resale prices, 20% of $115-$173/unit
+recovered = $23-$35/unit in additional Nok revenue per refurbed unit.
+
+## How We Got Here
+
+Built through iterative back-and-forth:
+1. Started with bottoms-up step-level costing from brain benchmarks
+2. Built v1 rate card with nested formulas ($10.19 blended)
+3. Analyzed Lockly Visage repack SOP video → validated NTF timing
+4. Video revealed repack maps to refurb (not NTF), sealed units don't need repack
+5. Decomposed all formulas into separate visible columns (mandatory brain rule now)
+6. Flipped from bottoms-up to customer-facing pricing tiers ($3/$2/$10/$8)
+7. Backed into margins with step-level detail as internal cost backup
 
 ## Confidence
 
-- NTF path: **HIGH** — video-validated, step-level timing observed
-- Refurb path: **MEDIUM** — benchmark-backed, no video yet
-- Hard Fail path: **LOW** — inferred from category benchmarks
-
-## Recommendations
-
-1. **Capture refurb SOP video** next — that path drives 53% of volume and $17.93/unit cost
-2. **Validate defective parts cost** ($12/unit assumed) with actual teardown data
-3. **Run 50-unit pilot** to validate production steady-state timing
-4. **Track activation card matching** as a KPI — mismatch = customer returns
+- Receive: MEDIUM (benchmark)
+- NTF/Damaged: HIGH (video-validated)
+- Refurbishment: MEDIUM (benchmark — capture video next)
+- Defective: LOW (inferred)
 
 ## Source Files
 
-- Workbook: `Lockly_Rate_Card_SOP_v2.xlsx` (saved to user's Documents/Claude)
-- SOP Video: PGK728WRHK Repack Video.mp4 (2:37, no audio)
-- Detailed SOP: `docs/process-notes/lockly-visage-repack-sop.md`
+- Workbook: `Lockly_Rate_Card_SOP_v2.xlsx`
+- Video SOP: `docs/process-notes/lockly-visage-repack-sop.md`
 - v1 Reference: `models/lockly-smart-lock-ratecard-v1.md`
