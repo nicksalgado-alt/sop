@@ -60,6 +60,32 @@ A good estimate includes:
 - open questions,
 - and confidence levels.
 
+## Decomposition Rule (MANDATORY)
+
+**Never nest cost components inside a single formula or cell.** Every cost
+component must be in its own column, visible and auditable on the face of the
+sheet. The required columns for every step row in a workbook are:
+
+| Column | Content | Type |
+|--------|---------|------|
+| Labor Min | Minutes of labor for this step | Input (blue) |
+| Labor $/hr | Hourly rate (ref to Assumptions) | Reference (green) |
+| Labor $ | = Labor Min / 60 × Labor $/hr | Formula (black) |
+| Parts $ | Direct parts or consumable cost | Input (blue) |
+| Handling $ | Equipment, packaging, overhead | Input (blue) |
+| Fallout $ | Expected loss, rework, defective conversion | Input (blue) |
+| Total $/Unit | = Labor + Parts + Handling + Fallout | Formula (black) |
+
+This means:
+- No `=(3/60)*35+0.35+0.20` style formulas. Ever.
+- Each number lives in one cell. The total is always a SUM of visible cells.
+- Anyone reading the sheet can challenge any single assumption without
+  reverse-engineering a formula.
+- Blue = direct input (editable). Black = formula. Green = cross-sheet ref.
+
+This rule applies to all workbook outputs — rate cards, SOPs, estimates,
+financial models. No exceptions.
+
 ## Confidence Model
 
 Claude should classify confidence per step as:
